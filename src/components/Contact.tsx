@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import React, { useState } from "react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -21,15 +18,15 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-20 bg-white ">
+      <div className="container mx-auto px-6 py-6">
         <h2 className="text-4xl font-bold text-center mb-16">Contact Me</h2>
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="flex justify-evenly">
           <div>
             <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
             <p className="text-gray-600 mb-8">
-              I'm always interested in hearing about new projects and opportunities.
-              Feel free to reach out!
+              I'm always interested in hearing about new projects and
+              opportunities. Feel free to reach out!
             </p>
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
@@ -46,10 +43,25 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          
-          <form data-netlify="true" name="contact" onSubmit={handleSubmit} className="space-y-6">
+
+          {/* Contact Form */}
+          <form
+            name="contact"
+            className="space-y-6"
+            action="/success"
+            method="post"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden>
+              <label>
+                Don’t fill this out if you’re human: <input name="bot-field" />
+              </label>
+            </p>
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Name
               </label>
               <input
@@ -63,7 +75,10 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Email
               </label>
               <input
@@ -77,7 +92,10 @@ const Contact = () => {
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Message
               </label>
               <textarea
