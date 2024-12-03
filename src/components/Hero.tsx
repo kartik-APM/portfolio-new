@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, MapPin, User } from "lucide-react";
 import { springTransition } from "../animations/transitions";
 import { fadeInUp } from "../animations/variants";
+import { KARTIK, KARTIK_ADDRESS, KARTIK_EMAIL } from "../personalDetails/data";
 
 const getYearDiffFromJuly2021 = () => {
   const startDate = new Date('2021-07-05'); // start date of my career 😇
@@ -24,7 +25,7 @@ const Hero = () => {
             <h1 className="text-5xl font-bold text-gray-900">
               Hello, I'm{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                Kartik Kumar Panday
+                {KARTIK}
               </span>
             </h1>
             <p className="text-gray-600 leading-relaxed">
@@ -59,7 +60,7 @@ const Hero = () => {
                 <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                   <Mail className="w-5 h-5 text-purple-600" />
                 </div>
-                <span>kartik.panda663@gmail.com</span>
+                <span>{KARTIK_EMAIL}</span>
               </motion.div>
 
               <motion.div
@@ -70,7 +71,7 @@ const Hero = () => {
                 <div className="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center">
                   <MapPin className="w-5 h-5 text-pink-600" />
                 </div>
-                <span>Bangalore, India</span>
+                <span>{KARTIK_ADDRESS}</span>
               </motion.div>
             </motion.div>
 

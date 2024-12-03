@@ -37,7 +37,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.5, opacity: 0 }}
           transition={{ type: "spring", duration: 0.5 }}
-          className="bg-white rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
+          className="bg-slate-100 rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-4"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="relative">

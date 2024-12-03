@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { KARTIK_ADDRESS, KARTIK_EMAIL, KARTIK_PHONE_NO } from "../personalDetails/data";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -31,15 +32,15 @@ const Contact = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
                 <Mail className="text-blue-600" />
-                <span>kartikpanda663@gmail.com</span>
+                <span>{KARTIK_EMAIL}</span>
               </div>
               <div className="flex items-center space-x-4">
                 <Phone className="text-blue-600" />
-                <span>+91 - 7347711923</span>
+                <span>{KARTIK_PHONE_NO}</span>
               </div>
               <div className="flex items-center space-x-4">
                 <MapPin className="text-blue-600" />
-                <span>Bangalore, India</span>
+                <span>{KARTIK_ADDRESS}</span>
               </div>
             </div>
           </div>
