@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+
+import Logo from './Logo';
+import { useScrollToTop } from '../hooks/useScrollToTop';
 import { useActiveSection } from '../hooks/useActiveSection';
 import { fadeInDown, staggerContainer } from '../animations/variants';
 import { springTransition, smoothTransition } from '../animations/transitions';
@@ -9,6 +12,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = ['About', 'Skills', 'Experience', 'Projects', 'Contact'];
   const activeSection = useActiveSection(menuItems);
+  const scrollToTop = useScrollToTop();
 
   return (
     <motion.header
@@ -19,14 +23,7 @@ const Header = () => {
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <motion.h1
-            variants={fadeInDown}
-            initial="hidden"
-            animate="visible"
-            className="text-2xl font-bold text-gray-800"
-          >
-            Portfolio
-          </motion.h1>
+        <Logo onClick={scrollToTop} />
           
           <motion.div
             variants={staggerContainer}

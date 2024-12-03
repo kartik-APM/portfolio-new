@@ -740,6 +740,14 @@ video {
   height: 0.125rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
 .max-h-\[90vh\] {
   max-height: 90vh;
 }
@@ -786,6 +794,14 @@ video {
 
 .w-2\/4 {
   width: 50%;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .max-w-3xl {
@@ -1133,6 +1149,11 @@ video {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pt-20 {
