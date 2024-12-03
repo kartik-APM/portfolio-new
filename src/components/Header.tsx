@@ -1,77 +1,116 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useActiveSection } from '../hooks/useActiveSection';
+import { fadeInDown, staggerContainer } from '../animations/variants';
+import { springTransition, smoothTransition } from '../animations/transitions';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = ['About', 'Skills', 'Experience', 'Projects', 'Contact'];
+  const activeSection = useActiveSection(menuItems);
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-sm">
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={smoothTransition}
+      className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm"
+    >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold"
+          <motion.h1
+            variants={fadeInDown}
+            initial="hidden"
+            animate="visible"
+            className="text-2xl font-bold text-gray-800"
           >
             Portfolio
-          </motion.div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
-            {menuItems.map((item, index) => (
-                <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 100, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector(`#${item.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                >
-                {item}
-                </motion.a>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? <X /> : <Menu />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
+          </motion.h1>
+          
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden pt-4"
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="hidden md:flex space-x-8"
           >
             {menuItems.map((item) => (
-              <a
+              <motion.a
                 key={item}
+                variants={fadeInDown}
                 href={`#${item.toLowerCase()}`}
-                className="block py-2 text-gray-600 hover:text-gray-900"
+                className={`transition-colors relative ${
+                  activeSection === item
+                    ? 'text-blue-600 font-semibold'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                transition={springTransition}
                 onClick={(e) => {
                   e.preventDefault();
-                  setIsOpen(false)
                   document.querySelector(`#${item.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
                 {item}
-              </a>
+                {activeSection === item && (
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600"
+                    initial={false}
+                    transition={springTransition}
+                  />
+                )}
+              </motion.a>
             ))}
+          </motion.div>
+
+          <motion.button
+            className="md:hidden"
+            initial="hidden"
+            animate="visible"
+            onClick={() => setIsOpen(!isOpen)}
+            whileTap={{ scale: 0.95 }}
+          >
+            {isOpen ? <X /> : <Menu />}
+          </motion.button>
+        </div>
+
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={smoothTransition}
+            className="md:hidden"
+          >
+            <div className="flex flex-col space-y-4 pt-4 pb-3">
+              {menuItems.map((item) => (
+                <motion.a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className={`transition-colors ${
+                    activeSection === item
+                      ? 'text-blue-600 font-semibold'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                  whileHover={{ x: 10 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={springTransition}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsOpen(false)
+                    document.querySelector(`#${item.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  {item}
+                </motion.a>
+              ))}
+            </div>
           </motion.div>
         )}
       </nav>
-    </header>
+    </motion.header>
   );
 };
 

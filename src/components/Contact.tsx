@@ -21,7 +21,7 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-white ">
       <div className="container mx-auto px-6 py-6">
         <h2 className="text-4xl font-bold text-center mb-16">Contact Me</h2>
-        <div className="flex justify-evenly">
+        <div className="grid md:grid-cols-2 gap-12">
           <div>
             <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
             <p className="text-gray-600 mb-8">
